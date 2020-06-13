@@ -4,7 +4,7 @@ import mysql.connector
 from datetime import date
 from datetime import datetime
 
-TOKEN=myToken.TOKEN
+TOKEN = myToken.TOKEN
 myBot = telebot.TeleBot(TOKEN)
 
 myDb = mysql.connector.connect(host='localhost', user='root', password='', database='db_belajarbot')
@@ -19,6 +19,8 @@ class Mybot:
 
     @myBot.message_handler(commands=['start','help'])
     def start(message):
+        photo = open('img/rpl.jpg', 'rb')
+        myBot.send_photo(message.from_user.id, photo)
         teks = myToken.SAPA + "\n-- admin & dev @ImamAlfarizi --" + "\n" \
                             "hari ini tanggal " + str(waktuSekarang)
         myBot.reply_to(message, teks)
@@ -33,9 +35,9 @@ class Mybot:
 
         if(jmldata > 0):
             #print(data)
-            no = 0
+            #no = 0
             for x in data:
-                no += 1
+                #no += 1
                 kumpuldata = kumpuldata + str(x) + '\n'
                 print(kumpuldata)
                 kumpuldata = kumpuldata.replace('(','')
